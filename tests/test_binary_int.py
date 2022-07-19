@@ -41,3 +41,13 @@ add_test_data = [
 @pytest.mark.parametrize(["bits1", "bits2", "sum"], add_test_data)
 def test_add(bits1: Sequence[Bit], bits2: Sequence[Bit], sum: Sequence[Bit]) -> None:
     assert BinaryInt(bits1) + BinaryInt(bits2) == BinaryInt(sum)
+
+
+def test_count_iter() -> None:
+    assert [bitstring for bitstring in BinaryInt([ONE, ZERO, ONE]).count_iter()] == [
+        BinaryInt([ZERO, ZERO, ZERO]),
+        BinaryInt([ONE, ZERO, ZERO]),
+        BinaryInt([ZERO, ONE, ZERO]),
+        BinaryInt([ONE, ONE, ZERO]),
+        BinaryInt([ZERO, ZERO, ONE]),
+    ]
